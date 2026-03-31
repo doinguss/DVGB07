@@ -1,0 +1,14 @@
+C:\Users\gnarpy\Desktop\c# assigments\vt2026-a1\bin\Debug\net8.0\vt2026-a1.exe
+C:\Users\gnarpy\Desktop\c# assigments\vt2026-a1\bin\Debug\net8.0\vt2026-a1.deps.json
+C:\Users\gnarpy\Desktop\c# assigments\vt2026-a1\bin\Debug\net8.0\vt2026-a1.runtimeconfig.json
+C:\Users\gnarpy\Desktop\c# assigments\vt2026-a1\bin\Debug\net8.0\vt2026-a1.dll
+C:\Users\gnarpy\Desktop\c# assigments\vt2026-a1\bin\Debug\net8.0\vt2026-a1.pdb
+C:\Users\gnarpy\Desktop\c# assigments\vt2026-a1\obj\Debug\net8.0\vt2026-a1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gnarpy\Desktop\c# assigments\vt2026-a1\obj\Debug\net8.0\vt2026-a1.AssemblyInfoInputs.cache
+C:\Users\gnarpy\Desktop\c# assigments\vt2026-a1\obj\Debug\net8.0\vt2026-a1.AssemblyInfo.cs
+C:\Users\gnarpy\Desktop\c# assigments\vt2026-a1\obj\Debug\net8.0\vt2026-a1.csproj.CoreCompileInputs.cache
+C:\Users\gnarpy\Desktop\c# assigments\vt2026-a1\obj\Debug\net8.0\vt2026-a1.dll
+C:\Users\gnarpy\Desktop\c# assigments\vt2026-a1\obj\Debug\net8.0\refint\vt2026-a1.dll
+C:\Users\gnarpy\Desktop\c# assigments\vt2026-a1\obj\Debug\net8.0\vt2026-a1.pdb
+C:\Users\gnarpy\Desktop\c# assigments\vt2026-a1\obj\Debug\net8.0\vt2026-a1.genruntimeconfig.cache
+C:\Users\gnarpy\Desktop\c# assigments\vt2026-a1\obj\Debug\net8.0\ref\vt2026-a1.dll
