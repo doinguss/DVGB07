@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "vt2026-a2/1.0.0": {
+        "runtime": {
+          "vt2026-a2.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "vt2026-a2/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
