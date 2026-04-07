@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -22,42 +23,65 @@ namespace vt2026_a2
 
         private void eqlBtn_Click(object sender, EventArgs e)
         {
-            cd.Entries.Insert(0,inputTxb.Text);
+            cd.Entries.Insert(0, inputTxb.Text);
             inputTxb.Text += '?'; //end of expression
             string output = cd.CalcExpression(inputTxb.Text);
 
-            inputTxb.Text=output;
+            inputTxb.Text = output;
             cd.Entries[0] += "  =  " + output;
 
-            outLbl.Text="";
+            outLbl.Text = "";
             for (int i = 0; i < int.Clamp(cd.Entries.Count, 0, 15); i++) { outLbl.Text = "\n" + cd.Entries[i] + outLbl.Text; }
         }
-        
-        private void CalcFrm_KeyPress(object sender, KeyPressEventArgs e)
+
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            switch (e.KeyChar) 
+            Debug.WriteLine(keyData);
+            switch (keyData)
             {
-                case '1': n1Btn.PerformClick(); break;
-                case '2': n2Btn.PerformClick(); break;
-                case '3': n3Btn.PerformClick(); break;
-                case '4': n4Btn.PerformClick(); break;
-                case '5': n5Btn.PerformClick(); break;
-                case '6': n6Btn.PerformClick(); break;
-                case '7': n7Btn.PerformClick(); break;
-                case '8': n8Btn.PerformClick(); break;
-                case '9': n9Btn.PerformClick(); break;
-                case '0': n0Btn.PerformClick(); break;
-                case '+': addBtn.PerformClick(); break;
-                case '-': subBtn.PerformClick(); break;
-                case '*': multBtn.PerformClick(); break;
-                case '/': divBtn.PerformClick(); break;
-                case (char)Keys.Escape:
-                case (char)Keys.Delete:
-                case 'c': clrBtn.PerformClick(); break;
-                case (char)Keys.Enter:
-                case '=': eqlBtn.PerformClick(); break;
+                /*********************== MISC ==************************/
+                case Keys.E:
+                case Keys.Space:
+                case Keys.Enter:    eqlBtn.PerformClick();  return true;
+                case Keys.C:
+                case Keys.Delete:
+                case Keys.Back:     clrBtn.PerformClick();  return true;
+
+                /********************== NUMBER KEYS ==******************/
+                case Keys.NumPad1:
+                case Keys.D1:       n1Btn.PerformClick();   return true;
+                case Keys.NumPad2:
+                case Keys.D2:       n2Btn.PerformClick();   return true;
+                case Keys.NumPad3:
+                case Keys.D3:       n3Btn.PerformClick();   return true;
+                case Keys.NumPad4:
+                case Keys.D4:       n4Btn.PerformClick();   return true;
+                case Keys.NumPad5:
+                case Keys.D5:       n5Btn.PerformClick();   return true;
+                case Keys.NumPad6:
+                case Keys.D6:       n6Btn.PerformClick();   return true;
+                case Keys.NumPad7:
+                case Keys.D7:       n7Btn.PerformClick();   return true;
+                case Keys.NumPad8:
+                case Keys.D8:       n8Btn.PerformClick();   return true;
+                case Keys.NumPad9:
+                case Keys.D9:       n9Btn.PerformClick();   return true;
+                case Keys.NumPad0:
+                case Keys.D0:       n0Btn.PerformClick();   return true;
+                
+                /*********************== OPPERATIONS ==*****************/
+                case Keys.Oemplus|Keys.Shift:
+                case Keys.Add:      addBtn.PerformClick();  return true;
+                case Keys.OemMinus:
+                case Keys.Subtract: subBtn.PerformClick();  return true;
+                case Keys.Oem2|Keys.Shift:
+                case Keys.Multiply: multBtn.PerformClick(); return true;
+                case Keys.Divide:   divBtn.PerformClick();  return true;
+                case Keys.OemSemicolon|Keys.Shift:expBtn.PerformClick(); return true;
             }
             this.Focus();
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void CalcFrm_Load(object sender, EventArgs e) { this.Focus(); }
@@ -91,5 +115,11 @@ namespace vt2026_a2
         private void divBtn_Click(object sender, EventArgs e) { inputTxb.Text += "/"; }
 
         private void clrBtn_Click(object sender, EventArgs e) { inputTxb.Text = ""; }
+
+        private void strpBtn_Click(object sender, EventArgs e) { inputTxb.Text += "("; }
+
+        private void endpBtn_Click(object sender, EventArgs e) { inputTxb.Text += ")"; }
+
+        private void expBtn_Click(object sender, EventArgs e) { inputTxb.Text += "^"; }
     }
 }

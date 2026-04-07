@@ -46,12 +46,15 @@
             eqlBtn = new Button();
             divBtn = new Button();
             outLbl = new Label();
+            strpBtn = new Button();
+            endpBtn = new Button();
+            expBtn = new Button();
             SuspendLayout();
             // 
             // inputTxb
             // 
             inputTxb.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            inputTxb.Location = new Point(12, 39);
+            inputTxb.Location = new Point(8, 36);
             inputTxb.Name = "inputTxb";
             inputTxb.ReadOnly = true;
             inputTxb.ScrollBars = ScrollBars.Horizontal;
@@ -61,7 +64,7 @@
             // n1Btn
             // 
             n1Btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            n1Btn.Location = new Point(12, 72);
+            n1Btn.Location = new Point(8, 69);
             n1Btn.Name = "n1Btn";
             n1Btn.Size = new Size(32, 28);
             n1Btn.TabIndex = 1;
@@ -72,7 +75,7 @@
             // n2Btn
             // 
             n2Btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            n2Btn.Location = new Point(50, 72);
+            n2Btn.Location = new Point(46, 69);
             n2Btn.Name = "n2Btn";
             n2Btn.Size = new Size(32, 28);
             n2Btn.TabIndex = 2;
@@ -83,7 +86,7 @@
             // n3Btn
             // 
             n3Btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            n3Btn.Location = new Point(88, 72);
+            n3Btn.Location = new Point(84, 69);
             n3Btn.Name = "n3Btn";
             n3Btn.Size = new Size(32, 28);
             n3Btn.TabIndex = 3;
@@ -94,7 +97,7 @@
             // n4Btn
             // 
             n4Btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            n4Btn.Location = new Point(12, 106);
+            n4Btn.Location = new Point(8, 103);
             n4Btn.Name = "n4Btn";
             n4Btn.Size = new Size(32, 28);
             n4Btn.TabIndex = 4;
@@ -105,7 +108,7 @@
             // n7Btn
             // 
             n7Btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            n7Btn.Location = new Point(12, 140);
+            n7Btn.Location = new Point(8, 137);
             n7Btn.Name = "n7Btn";
             n7Btn.Size = new Size(32, 28);
             n7Btn.TabIndex = 5;
@@ -117,7 +120,7 @@
             // 
             clrBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             clrBtn.BackColor = SystemColors.ButtonFace;
-            clrBtn.Location = new Point(12, 174);
+            clrBtn.Location = new Point(8, 171);
             clrBtn.Name = "clrBtn";
             clrBtn.Size = new Size(32, 28);
             clrBtn.TabIndex = 6;
@@ -129,7 +132,7 @@
             // 
             addBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             addBtn.BackColor = SystemColors.ButtonFace;
-            addBtn.Location = new Point(126, 72);
+            addBtn.Location = new Point(122, 69);
             addBtn.Name = "addBtn";
             addBtn.Size = new Size(32, 28);
             addBtn.TabIndex = 7;
@@ -140,7 +143,7 @@
             // n5Btn
             // 
             n5Btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            n5Btn.Location = new Point(50, 106);
+            n5Btn.Location = new Point(46, 103);
             n5Btn.Name = "n5Btn";
             n5Btn.Size = new Size(32, 28);
             n5Btn.TabIndex = 8;
@@ -151,7 +154,7 @@
             // n6Btn
             // 
             n6Btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            n6Btn.Location = new Point(88, 106);
+            n6Btn.Location = new Point(84, 103);
             n6Btn.Name = "n6Btn";
             n6Btn.Size = new Size(32, 28);
             n6Btn.TabIndex = 9;
@@ -163,7 +166,7 @@
             // 
             subBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             subBtn.BackColor = SystemColors.ButtonFace;
-            subBtn.Location = new Point(126, 106);
+            subBtn.Location = new Point(122, 103);
             subBtn.Name = "subBtn";
             subBtn.Size = new Size(32, 28);
             subBtn.TabIndex = 10;
@@ -174,7 +177,7 @@
             // n8Btn
             // 
             n8Btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            n8Btn.Location = new Point(50, 140);
+            n8Btn.Location = new Point(46, 137);
             n8Btn.Name = "n8Btn";
             n8Btn.Size = new Size(32, 28);
             n8Btn.TabIndex = 11;
@@ -185,7 +188,7 @@
             // n9Btn
             // 
             n9Btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            n9Btn.Location = new Point(88, 140);
+            n9Btn.Location = new Point(84, 137);
             n9Btn.Name = "n9Btn";
             n9Btn.Size = new Size(32, 28);
             n9Btn.TabIndex = 12;
@@ -197,7 +200,7 @@
             // 
             multBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             multBtn.BackColor = SystemColors.ButtonFace;
-            multBtn.Location = new Point(126, 140);
+            multBtn.Location = new Point(122, 137);
             multBtn.Name = "multBtn";
             multBtn.Size = new Size(32, 28);
             multBtn.TabIndex = 13;
@@ -208,7 +211,7 @@
             // n0Btn
             // 
             n0Btn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            n0Btn.Location = new Point(50, 174);
+            n0Btn.Location = new Point(46, 171);
             n0Btn.Name = "n0Btn";
             n0Btn.Size = new Size(32, 28);
             n0Btn.TabIndex = 14;
@@ -220,7 +223,7 @@
             // 
             eqlBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             eqlBtn.BackColor = SystemColors.ButtonFace;
-            eqlBtn.Location = new Point(88, 174);
+            eqlBtn.Location = new Point(84, 171);
             eqlBtn.Name = "eqlBtn";
             eqlBtn.Size = new Size(32, 28);
             eqlBtn.TabIndex = 15;
@@ -232,7 +235,7 @@
             // 
             divBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             divBtn.BackColor = SystemColors.ButtonFace;
-            divBtn.Location = new Point(126, 174);
+            divBtn.Location = new Point(122, 171);
             divBtn.Name = "divBtn";
             divBtn.Size = new Size(32, 28);
             divBtn.TabIndex = 16;
@@ -244,11 +247,47 @@
             // 
             outLbl.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             outLbl.BackColor = SystemColors.ControlLight;
-            outLbl.Location = new Point(12, -370);
+            outLbl.Location = new Point(8, -343);
             outLbl.Name = "outLbl";
-            outLbl.Size = new Size(146, 406);
+            outLbl.Size = new Size(146, 376);
             outLbl.TabIndex = 17;
             outLbl.TextAlign = ContentAlignment.BottomLeft;
+            // 
+            // strpBtn
+            // 
+            strpBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            strpBtn.BackColor = SystemColors.ButtonFace;
+            strpBtn.Location = new Point(8, 205);
+            strpBtn.Name = "strpBtn";
+            strpBtn.Size = new Size(32, 28);
+            strpBtn.TabIndex = 18;
+            strpBtn.Text = "(";
+            strpBtn.UseVisualStyleBackColor = false;
+            strpBtn.Click += strpBtn_Click;
+            // 
+            // endpBtn
+            // 
+            endpBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            endpBtn.BackColor = SystemColors.ButtonFace;
+            endpBtn.Location = new Point(46, 205);
+            endpBtn.Name = "endpBtn";
+            endpBtn.Size = new Size(32, 28);
+            endpBtn.TabIndex = 19;
+            endpBtn.Text = ")";
+            endpBtn.UseVisualStyleBackColor = false;
+            endpBtn.Click += endpBtn_Click;
+            // 
+            // expBtn
+            // 
+            expBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            expBtn.BackColor = SystemColors.ButtonFace;
+            expBtn.Location = new Point(84, 205);
+            expBtn.Name = "expBtn";
+            expBtn.Size = new Size(32, 28);
+            expBtn.TabIndex = 20;
+            expBtn.Text = "^";
+            expBtn.UseVisualStyleBackColor = false;
+            expBtn.Click += expBtn_Click;
             // 
             // CalcFrm
             // 
@@ -257,8 +296,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoValidate = AutoValidate.EnableAllowFocusChange;
             CancelButton = clrBtn;
-            ClientSize = new Size(166, 214);
+            ClientSize = new Size(166, 241);
             ControlBox = false;
+            Controls.Add(expBtn);
+            Controls.Add(endpBtn);
+            Controls.Add(strpBtn);
             Controls.Add(outLbl);
             Controls.Add(divBtn);
             Controls.Add(eqlBtn);
@@ -285,7 +327,6 @@
             ShowIcon = false;
             Text = "Calc";
             Load += CalcFrm_Load;
-            KeyPress += CalcFrm_KeyPress;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -310,5 +351,8 @@
         private Button eqlBtn;
         private Button divBtn;
         private Label outLbl;
+        private Button strpBtn;
+        private Button endpBtn;
+        private Button expBtn;
     }
 }
