@@ -21,12 +21,18 @@ namespace vt2026_a2
         internal void Setnum(int value, int index) //setter
         {
             if (index < 1 || index > 7) { return; }
-            num[index-1] = (Inbounds(value) && !num.Contains(value)) ? value : null;
+            num[index-1] = (Inbounds(value) && !num.Contains(value)) ? value : null;//if value is in bounds and new set it otherwise set null
         }
         internal void Clear() { for (int i=0;i < 7;i++) { num[i] = null; } }
         private bool Inbounds(int? value) {
             return value >= 1 && value <= 35;
         }
+        /// <summary>
+        /// pre: true (honestly nothings gonna break here)
+        /// post: increases matchX if that many are matching 
+        /// thing called when playing a game
+        /// </summary>
+        /// <param name="r"></param>
         internal void Gambling(Random r) 
         {
             int newnum= r.Next(1, 36), matches = 0;

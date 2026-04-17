@@ -1,5 +1,8 @@
 namespace vt2026_a2
 {
+    /// <summary>
+    /// just a window to give acess to the sub parts of this assignment 
+    /// </summary>
     public partial class Form1 : Form
     {
         private LottoFrm lottoFrm;
