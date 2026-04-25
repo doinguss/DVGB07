@@ -59,5 +59,25 @@ namespace vt2026_a2.Properties {
                 resourceCulture = value;
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap szirena_siren
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("szirena-siren", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        internal static System.IO.Stream alarm
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("alarm", resourceCulture);
+                return ((System.IO.Stream)(obj));
+            }
+        }
     }
 }

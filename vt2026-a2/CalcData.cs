@@ -10,7 +10,7 @@ namespace vt2026_a2
     internal class CalcData
     {
         private List<string> entries;
-        private static string[] symbols = { "+", "-", "*", "^", "E", "/", "?", "(", ")" };
+        private static string[] symbols = { "+", "-", "*", "^", "E", "/", "?", "(", ")", "err", "!" , "err2"};
         internal List<string> Entries { get { return entries; } set { entries = value; } }
         public CalcData()
         {
@@ -70,8 +70,8 @@ namespace vt2026_a2
         //post: replaces opperations with their result, following order of opperations
         private void OrderOfOpperations(List<string> tokens)
         {
-            try
-            {//try catch to deal with weird inconsistent errors where the correctsyntax method or the handel parenthesis let opperation characters stack up causing an error when the theyre being resolved
+            //try
+            //{//try catch to deal with weird inconsistent errors where the correctsyntax method or the handel parenthesis let opperation characters stack up causing an error when the theyre being resolved
                 for (int i = 0; i < tokens.Count; i++)
                 {//for parenthesis
                     if (!tokens.Contains("(") || !tokens.Contains(")")) { break; }
@@ -81,11 +81,12 @@ namespace vt2026_a2
                     }
                 }
                 for (int i = 0; i < tokens.Count; i++)
-                {//for exponents (and roots)
-                    if (!tokens.Contains("^")) { break; }
+                {//for exponents (and roots) and factorial
+                    if (!tokens.Contains("^") && !tokens.Contains("!")) { break; }
                     switch (tokens[i])
                     {
                         case "^": tokens[i] = pow(tokens[i - 1], tokens[i + 1]); tokens.RemoveAt(i + 1); tokens.RemoveAt(i - 1); i -= 2; break;
+                        case "!": tokens[i-1] = fac(tokens[i-1]); tokens.RemoveAt(i); break;
                     }
                 }
                 for (int i = 0; i < tokens.Count; i++)
@@ -106,8 +107,8 @@ namespace vt2026_a2
                         case "-": tokens[i] = sub(tokens[i - 1], tokens[i + 1]); tokens.RemoveAt(i + 1); tokens.RemoveAt(i - 1); i -= 2; break;
                     }
                 }
-            }
-            catch { Debug.WriteLine(tokens); }
+            //}
+            //catch { Debug.WriteLine(tokens); }
         }
         //pre: tokens initilaized
         //post: corrected syntax that can compute
@@ -115,62 +116,76 @@ namespace vt2026_a2
         {
             for (int i = 0; i < tokens.Count; i++)
             {
+                if (tokens.Contains("err")) {tokens.Clear(); tokens.Add("err"); return; }// in case of error the error will abort the everythng and only leave itself
+                if (tokens.Contains("err2")) {tokens.Clear(); tokens.Add("err2"); return; }// in case of error the error will abort the everythng and only leave itself
                 if (!symbols.Contains(tokens[i])) { continue; }     //if not a symbol, continue
                 if (tokens[0] == "-") { tokens.Insert(0, "0"); i++; continue; } //adds 0 first if expression starts with a negative number (instead of deleting the '-')
-                if (symbols.Contains(tokens[0])) { tokens.RemoveAt(0); i--; continue; }  //if a symbol is in first pos, delete it
+                if (symbols.Contains(tokens[0])&& tokens[0]!="(") { tokens.RemoveAt(0); i--; continue; }  //if a symbol is in first pos, delete it
                 if (tokens[i] == "E") { tokens[i] = "*"; tokens.Insert(i + 1, "^"); tokens.Insert(i + 1, "10"); } //to handel scientific E notation
+                if (i == 0) { continue; }// for opening parenthesis at first index
                 switch (tokens[i - 1], tokens[i])
                 {//for doubled up symbols like for adding special interactions :3
+                    case ("/", "0"): tokens[i] = "err"; tokens.RemoveAt(i - 1); i=0; break;
                     case ("+", "+"):                    tokens.RemoveAt(i);     i--; break;
                     case ("-", "+"):                    tokens.RemoveAt(i);     i--; break;
-                    case ("*", "+"):                    tokens.RemoveAt(i);     i--; break;
-                    case ("/", "+"):                    tokens.RemoveAt(i);     i--; break;
-                    case ("^", "+"):                    tokens.RemoveAt(i);     i--; break;
+                    case ("*", "+"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("/", "+"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("^", "+"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("(", "+"):                    tokens.RemoveAt(i);     i--; break;
                     case ("+", "-"):                    tokens.RemoveAt(i - 1); i--; break;
                     case ("-", "-"): tokens[i] = "+";   tokens.RemoveAt(i - 1); i--; break;
-                    case ("*", "-"):                    tokens.RemoveAt(i);     i--; break;
-                    case ("/", "-"):                    tokens.RemoveAt(i);     i--; break;
-                    case ("^", "-"):                    tokens.RemoveAt(i);     i--; break;
-                    case ("+", "*"):                    tokens.RemoveAt(i);     i--; break;
-                    case ("-", "*"):                    tokens.RemoveAt(i);     i--; break;
+                    case ("*", "-"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("/", "-"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("^", "-"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("+", "*"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("-", "*"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
                     case ("*", "*"): tokens[i] = "^";   tokens.RemoveAt(i - 1); i--; break;
-                    case ("/", "*"):                    tokens.RemoveAt(i);     i--; break; 
-                    case ("^", "*"):                    tokens.RemoveAt(i);     i--; break;
-                    case ("+", "/"):                    tokens.RemoveAt(i);     i--; break;
-                    case ("-", "/"):                    tokens.RemoveAt(i);     i--; break;
-                    case ("*", "/"):                    tokens.RemoveAt(i);     i--; break;
-                    case ("/", "/"):                    tokens.RemoveAt(i);     i--; break;
-                    case ("^", "/"):                    tokens.RemoveAt(i);     i--; break;
-                    case ("+", "^"):                    tokens.RemoveAt(i);     i--; break;
-                    case ("-", "^"):                    tokens.RemoveAt(i);     i--; break;
-                    case ("*", "^"):                    tokens.RemoveAt(i);     i--; break;
-                    case ("/", "^"):                    tokens.RemoveAt(i);     i--; break;
-                    case ("^", "^"):                    tokens.RemoveAt(i);     i--; break;
+                    case ("/", "*"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break; 
+                    case ("^", "*"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("(", "*"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("+", "/"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("-", "/"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("*", "/"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("/", "/"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("^", "/"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("(", "/"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("+", "^"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("-", "^"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("*", "^"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("/", "^"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("^", "^"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("(", "^"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    //case (")", "^"):                    tokens.RemoveAt(i -1 ); i--; break;
+                    case ("+", "!"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("-", "!"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("*", "!"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("/", "!"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("^", "!"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("!", "!"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("(", "!"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case (")", "!"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("(", "-"):                    tokens.Insert(i, "0");  i--; break;
                     case ("+", "?"):                    tokens.RemoveAt(i - 1); i--; break;
                     case ("-", "?"):                    tokens.RemoveAt(i - 1); i--; break;
                     case ("*", "?"):                    tokens.RemoveAt(i - 1); i--; break;
                     case ("/", "?"):                    tokens.RemoveAt(i - 1); i--; break;
                     case ("^", "?"):                    tokens.RemoveAt(i - 1); i--; break;
-                    case ("+", ")"):                    tokens.RemoveAt(i - 1); i--; break;
-                    case ("-", ")"):                    tokens.RemoveAt(i - 1); i--; break;
-                    case ("*", ")"):                    tokens.RemoveAt(i - 1); i--; break;
-                    case ("/", ")"):                    tokens.RemoveAt(i - 1); i--; break;
-                    case ("^", ")"):                    tokens.RemoveAt(i - 1); i--; break;
-                    case ("(", "+"):                    tokens.RemoveAt(i - 1); i--; break;
-                    case ("(", "-"):                    tokens.RemoveAt(i - 1); i--; break;
-                    case ("(", "*"):                    tokens.RemoveAt(i - 1); i--; break;
-                    case ("(", "/"):                    tokens.RemoveAt(i - 1); i--; break;
-                    case ("(", "^"):                    tokens.RemoveAt(i - 1); i--; break;
+                    case ("+", ")"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("-", ")"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("*", ")"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("/", ")"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("^", ")"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
                 }
             }
         }
         //
         //everything below is super self-explanatory 
         //pre: a && b are numbers 
-        private static string add(string a, string b) { return (float.Parse(a) + float.Parse(b)).ToString(); }
-        private static string sub(string a, string b) { return (float.Parse(a) - float.Parse(b)).ToString(); }
-        private static string mult(string a, string b) { return (float.Parse(a) * float.Parse(b)).ToString(); }
-        private static string div(string a, string b) { return b == "0" ? "0" : (float.Parse(a) / float.Parse(b)).ToString(); }
-        private static string pow(string a, string b) { return Math.Pow(float.Parse(a), float.Parse(b)).ToString(); }
+        private static string add(string a, string b) { return (double.Parse(a) + double.Parse(b)).ToString(); }
+        private static string sub(string a, string b) { return (double.Parse(a) - double.Parse(b)).ToString(); }
+        private static string mult(string a, string b) { return (double.Parse(a) * double.Parse(b)).ToString(); }
+        private static string div(string a, string b) { return b == "0" ? "err" : (double.Parse(a) / double.Parse(b)).ToString(); }
+        private static string pow(string a, string b) { return Math.Pow(double.Parse(a), double.Parse(b)).ToString(); }
+        private static string fac(string a) { double output = 1;for (ulong i= (ulong)Math.Clamp(double.Parse(a),1,ulong.MaxValue) ; i > 1; i--){ output *= i; }return output.ToString(); }
     }
 }

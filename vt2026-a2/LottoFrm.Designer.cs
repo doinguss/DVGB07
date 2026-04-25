@@ -146,7 +146,6 @@
             ittrationTxb.PlaceholderText = "100";
             ittrationTxb.Size = new Size(125, 28);
             ittrationTxb.TabIndex = 8;
-            ittrationTxb.TabStop = false;
             ittrationTxb.TextChanged += ittrationTxb_TextChanged;
             // 
             // itterateBtn
@@ -162,7 +161,6 @@
             itterateBtn.Name = "itterateBtn";
             itterateBtn.Size = new Size(127, 34);
             itterateBtn.TabIndex = 9;
-            itterateBtn.TabStop = false;
             itterateBtn.Text = "Starta lotto";
             itterateBtn.UseVisualStyleBackColor = false;
             itterateBtn.Click += itterateBtn_Click;
@@ -250,11 +248,11 @@
             // 
             loadingLbl.AutoSize = true;
             loadingLbl.Font = new Font("Comic Sans MS", 13.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            loadingLbl.Location = new Point(246, 88);
+            loadingLbl.Location = new Point(62, 88);
             loadingLbl.Name = "loadingLbl";
-            loadingLbl.Size = new Size(106, 32);
+            loadingLbl.Size = new Size(483, 32);
             loadingLbl.TabIndex = 17;
-            loadingLbl.Text = "loading...";
+            loadingLbl.Text = "fyll alla rutor (första 1-35, nedre numer>0) ";
             // 
             // LottoFrm
             // 
@@ -285,7 +283,6 @@
             Name = "LottoFrm";
             ShowIcon = false;
             Text = "Lotto";
-            Load += LottoFrm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

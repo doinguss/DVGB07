@@ -32,6 +32,12 @@ namespace vt2026_a2
             inputTxb.Text += '?'; //end of expression added to force tokenize last number and useful for the correctsyntax method
             string output = cd.CalcExpression(inputTxb.Text);
 
+            warningFrm frm;
+            switch (output)
+            {
+                case "err": frm = new("DONT DIVIDE BY 0!!"); showErrFrm(frm); return;
+                case "err2": frm = new("hey thats some pretty\n uncool-like input buckaroo");showErrFrm(frm); return;
+            }
             inputTxb.Text = output; // can change to "...= cd.entries[0]" (or '...=""' to clear it) here for the same equation to remain but wanted to make result extra clear
             cd.Entries[0] += "  =  " + output;
 
@@ -49,48 +55,59 @@ namespace vt2026_a2
                 /*********************== MISC ==************************/
                 case Keys.E:
                 case Keys.Space:
-                case Keys.Enter:          eqlBtn.PerformClick();   return true;
+                case Keys.Enter: eqlBtn.PerformClick(); return true;
                 case Keys.C:
                 case Keys.Delete:
-                case Keys.Back:           clrBtn.PerformClick();   return true;
-                case Keys.D8| Keys.Shift: strpBtn.PerformClick();  return true;
-                case Keys.D9| Keys.Shift: endpBtn.PerformClick();  return true;
+                case Keys.Back: clrBtn.PerformClick(); return true;
+                case Keys.D8 | Keys.Shift: strpBtn.PerformClick(); return true;
+                case Keys.D9 | Keys.Shift: endpBtn.PerformClick(); return true;
+                case Keys.E | Keys.Control: warningFrm warning = new("bobs"); warning.Show(); ; return true;
 
                 /********************== NUMBER KEYS ==******************/
                 case Keys.NumPad1:
-                case Keys.D1:             n1Btn.PerformClick();    return true;
+                case Keys.D1: n1Btn.PerformClick(); return true;
                 case Keys.NumPad2:
-                case Keys.D2:             n2Btn.PerformClick();    return true;
+                case Keys.D2: n2Btn.PerformClick(); return true;
                 case Keys.NumPad3:
-                case Keys.D3:             n3Btn.PerformClick();    return true;
+                case Keys.D3: n3Btn.PerformClick(); return true;
                 case Keys.NumPad4:
-                case Keys.D4:             n4Btn.PerformClick();    return true;
+                case Keys.D4: n4Btn.PerformClick(); return true;
                 case Keys.NumPad5:
-                case Keys.D5:             n5Btn.PerformClick();    return true;
+                case Keys.D5: n5Btn.PerformClick(); return true;
                 case Keys.NumPad6:
-                case Keys.D6:             n6Btn.PerformClick();    return true;
+                case Keys.D6: n6Btn.PerformClick(); return true;
                 case Keys.NumPad7:
-                case Keys.D7:             n7Btn.PerformClick();    return true;
+                case Keys.D7: n7Btn.PerformClick(); return true;
                 case Keys.NumPad8:
-                case Keys.D8:             n8Btn.PerformClick();    return true;
+                case Keys.D8: n8Btn.PerformClick(); return true;
                 case Keys.NumPad9:
-                case Keys.D9:             n9Btn.PerformClick();    return true;
+                case Keys.D9: n9Btn.PerformClick(); return true;
                 case Keys.NumPad0:
-                case Keys.D0:             n0Btn.PerformClick();    return true;
-                
+                case Keys.D0: n0Btn.PerformClick(); return true;
+
                 /*********************== OPPERATIONS ==*****************/
                 case Keys.Oemplus:
-                case Keys.Add:            addBtn.PerformClick();   return true;
+                case Keys.Add: addBtn.PerformClick(); return true;
                 case Keys.OemMinus:
-                case Keys.Subtract:       subBtn.PerformClick();   return true;
-                case Keys.Oem2|Keys.Shift:
-                case Keys.Multiply:       multBtn.PerformClick();  return true;
-                case Keys.Divide:         divBtn.PerformClick();   return true;
-                case Keys.OemSemicolon|Keys.Shift:
-                /*carry trhough*/         expBtn.PerformClick();   return true;
+                case Keys.Subtract: subBtn.PerformClick(); return true;
+                case Keys.Oem2 | Keys.Shift:
+                case Keys.Multiply: multBtn.PerformClick(); return true;
+                case Keys.D7 | Keys.Shift:
+                case Keys.Divide: divBtn.PerformClick(); return true;
+                case Keys.OemSemicolon | Keys.Shift:
+                    /*carry trhough*/
+                    expBtn.PerformClick(); return true;
+                case Keys.D1| Keys.Shift: factBtn.PerformClick(); return true;
             }
             this.Focus();
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void showErrFrm(warningFrm frm) 
+        {
+            frm.Show();
+            inputTxb.Text = "";
+            return;
         }
         //
         //everythign below is too simple to comment on, it adds what u press into the compute feild or clears it for clrBtn
@@ -132,5 +149,7 @@ namespace vt2026_a2
         private void endpBtn_Click(object sender, EventArgs e) { inputTxb.Text += ")"; }
 
         private void expBtn_Click(object sender, EventArgs e) { inputTxb.Text += "^"; }
+
+        private void factBtn_Click(object sender, EventArgs e) { inputTxb.Text += "!"; }
     }
 }

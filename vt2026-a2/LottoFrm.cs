@@ -89,9 +89,5 @@ namespace vt2026_a2
         private void num7Txb_TextChanged(object sender, EventArgs e){validateTbxs();}
         private void ittrationTxb_TextChanged(object sender, EventArgs e){validateTbxs();}
         //*******************************************************//
-        private void LottoFrm_Load(object sender, EventArgs e)
-        {
-            loadingLbl.Visible = false;
-        }
     }
 }

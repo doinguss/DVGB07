@@ -49,6 +49,7 @@
             strpBtn = new Button();
             endpBtn = new Button();
             expBtn = new Button();
+            factBtn = new Button();
             SuspendLayout();
             // 
             // inputTxb
@@ -289,6 +290,18 @@
             expBtn.UseVisualStyleBackColor = false;
             expBtn.Click += expBtn_Click;
             // 
+            // factBtn
+            // 
+            factBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            factBtn.BackColor = SystemColors.ButtonFace;
+            factBtn.Location = new Point(122, 205);
+            factBtn.Name = "factBtn";
+            factBtn.Size = new Size(32, 28);
+            factBtn.TabIndex = 21;
+            factBtn.Text = "!";
+            factBtn.UseVisualStyleBackColor = false;
+            factBtn.Click += factBtn_Click;
+            // 
             // CalcFrm
             // 
             AcceptButton = eqlBtn;
@@ -298,6 +311,7 @@
             CancelButton = clrBtn;
             ClientSize = new Size(166, 241);
             ControlBox = false;
+            Controls.Add(factBtn);
             Controls.Add(expBtn);
             Controls.Add(endpBtn);
             Controls.Add(strpBtn);
@@ -354,5 +368,6 @@
         private Button strpBtn;
         private Button endpBtn;
         private Button expBtn;
+        private Button factBtn;
     }
 }
