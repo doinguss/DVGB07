@@ -247,12 +247,13 @@
             // loadingLbl
             // 
             loadingLbl.AutoSize = true;
+            loadingLbl.BackColor = Color.Transparent;
             loadingLbl.Font = new Font("Comic Sans MS", 13.8F, FontStyle.Italic, GraphicsUnit.Point, 0);
             loadingLbl.Location = new Point(62, 88);
             loadingLbl.Name = "loadingLbl";
-            loadingLbl.Size = new Size(483, 32);
+            loadingLbl.Size = new Size(366, 32);
             loadingLbl.TabIndex = 17;
-            loadingLbl.Text = "fyll alla rutor (första 1-35, nedre numer>0) ";
+            loadingLbl.Text = "                   (fill the input feilds)";
             // 
             // LottoFrm
             // 

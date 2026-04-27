@@ -19,16 +19,22 @@ namespace vt2026_a2
         {
             InitializeComponent();
             button1.Text = warning;
-            soundPlayer = new SoundPlayer(Resources.alarm);
+            soundPlayer = new SoundPlayer(@"alarm.wav");
         }
         private void warningFrm_Load(object sender, EventArgs e)
         {
-            soundPlayer.Play(); //doesnt work as intended 
+            soundPlayer.PlayLooping();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            soundPlayer.Stop();
             this.Close();
+        }
+
+        private void warningFrm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            soundPlayer.Stop();
         }
         //=====credits to resources=====
         //background giff:

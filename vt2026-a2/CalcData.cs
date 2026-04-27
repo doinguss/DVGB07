@@ -22,6 +22,9 @@ namespace vt2026_a2
         {
             return HandelTokens(MakeTokens(input));
         }
+
+        //pre: input only contains chars in symbols and numbers ('.' is ok if in fraction)
+        //post: list of tokens (breaks expression into inorder tokens, tokens determined by if operator or num)
         private List<string> MakeTokens(string input)
         {
             int start = 0;
@@ -70,8 +73,8 @@ namespace vt2026_a2
         //post: replaces opperations with their result, following order of opperations
         private void OrderOfOpperations(List<string> tokens)
         {
-            //try
-            //{//try catch to deal with weird inconsistent errors where the correctsyntax method or the handel parenthesis let opperation characters stack up causing an error when the theyre being resolved
+            try
+            {//try catch to deal with weird inconsistent errors where the correctsyntax method or the handel parenthesis let opperation characters stack up causing an error when the theyre being resolved
                 for (int i = 0; i < tokens.Count; i++)
                 {//for parenthesis
                     if (!tokens.Contains("(") || !tokens.Contains(")")) { break; }
@@ -107,8 +110,8 @@ namespace vt2026_a2
                         case "-": tokens[i] = sub(tokens[i - 1], tokens[i + 1]); tokens.RemoveAt(i + 1); tokens.RemoveAt(i - 1); i -= 2; break;
                     }
                 }
-            //}
-            //catch { Debug.WriteLine(tokens); }
+            }
+            catch { Debug.WriteLine(tokens.ToString()); }
         }
         //pre: tokens initilaized
         //post: corrected syntax that can compute
@@ -130,13 +133,13 @@ namespace vt2026_a2
                     case ("-", "+"):                    tokens.RemoveAt(i);     i--; break;
                     case ("*", "+"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
                     case ("/", "+"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
-                    case ("^", "+"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("^", "+"):                   ;tokens.RemoveAt(i);     i--; break;
                     case ("(", "+"):                    tokens.RemoveAt(i);     i--; break;
                     case ("+", "-"):                    tokens.RemoveAt(i - 1); i--; break;
                     case ("-", "-"): tokens[i] = "+";   tokens.RemoveAt(i - 1); i--; break;
                     case ("*", "-"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
                     case ("/", "-"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
-                    case ("^", "-"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    case ("^", "-"): tokens.Insert(i+2,")");tokens.Insert(i,"(");i--;break;
                     case ("+", "*"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
                     case ("-", "*"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
                     case ("*", "*"): tokens[i] = "^";   tokens.RemoveAt(i - 1); i--; break;
@@ -161,9 +164,9 @@ namespace vt2026_a2
                     case ("*", "!"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
                     case ("/", "!"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
                     case ("^", "!"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
-                    case ("!", "!"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    //case ("!", "!"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
                     case ("(", "!"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
-                    case (")", "!"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
+                    //case (")", "!"): tokens[i] = "err2";tokens.RemoveAt(i - 1); i--; break;
                     case ("(", "-"):                    tokens.Insert(i, "0");  i--; break;
                     case ("+", "?"):                    tokens.RemoveAt(i - 1); i--; break;
                     case ("-", "?"):                    tokens.RemoveAt(i - 1); i--; break;
@@ -186,6 +189,6 @@ namespace vt2026_a2
         private static string mult(string a, string b) { return (double.Parse(a) * double.Parse(b)).ToString(); }
         private static string div(string a, string b) { return b == "0" ? "err" : (double.Parse(a) / double.Parse(b)).ToString(); }
         private static string pow(string a, string b) { return Math.Pow(double.Parse(a), double.Parse(b)).ToString(); }
-        private static string fac(string a) { double output = 1;for (ulong i= (ulong)Math.Clamp(double.Parse(a),1,ulong.MaxValue) ; i > 1; i--){ output *= i; }return output.ToString(); }
+        private static string fac(string a) { double output = 1;for (ulong i= (ulong)Math.Clamp(double.Parse(a),0,ulong.MaxValue) ; i > 1; i--){ output *= i; }return output.ToString(); }
     }
 }

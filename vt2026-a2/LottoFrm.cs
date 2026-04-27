@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,26 @@ namespace vt2026_a2
             InitializeComponent();
             ld = new();
             rand = new();
+            timer= new();
+            timer.Tick += new EventHandler(async delegate (Object? o, EventArgs e) 
+            {
+                timer.Stop();
+                List<Task> tasks = new();
+                await ld.start(itterations,rand,tasks);
+                while (tasks.Any(t => !t.IsCompleted)) { }// https://stackoverflow.com/questions/263116/waiting-for-all-threads-to-complete-with-a-timeout
+                Debug.WriteLine("num of itterations: "+ld.Its);
+                match5Txb.Text = ld.Match5.ToString();
+                match6Txb.Text = ld.Match6.ToString();
+                match7Txb.Text = ld.Match7.ToString();
+                loadingLbl.Visible = false;
+                itterateBtn.Enabled = true;
+            });
         }
 
+        private System.Windows.Forms.Timer timer;
         private LottoData ld;
         private Random rand;
-        private int itterations;
+        private uint itterations;
         /// <summary>
         /// pre: itteration number and all dataklass data is valid
         /// post: runs game as many times as the itteration number, updates txbs to show how many games had X matches
@@ -30,18 +46,11 @@ namespace vt2026_a2
         /// <param name="e"></param>
         private void itterateBtn_Click(object sender, EventArgs e)
         {
+            itterateBtn.Enabled = false;
             loadingLbl.Visible = true;
-            ld.match5 = 0;
-            ld.match6 = 0;
-            ld.match7 = 0;
-            for (int i = 0; i < itterations; i++)
-            {
-                ld.Gambling(rand);
-            }
-            match5Txb.Text = ld.match5.ToString();
-            match6Txb.Text = ld.match6.ToString();
-            match7Txb.Text = ld.match7.ToString();
-            loadingLbl.Visible = false;
+            loadingLbl.Text = "loading"; // this doesnt work but idk how to make it, leaving this in as to show intent
+            timer.Start();
+            
         }
         /// <summary>
         /// pre: true
@@ -50,6 +59,9 @@ namespace vt2026_a2
         private void validateTbxs() 
         {
             itterateBtn.Enabled = false;
+            loadingLbl.Visible = true;
+            loadingLbl.Text = "not all required feilds have correct input yet";
+
             ld.Clear();
             parse(num1Txb);
             parse(num2Txb);
@@ -58,9 +70,11 @@ namespace vt2026_a2
             parse(num5Txb);
             parse(num6Txb);
             parse(num7Txb);
-            if (!int.TryParse(ittrationTxb.Text,out itterations)) { return; }
+            if (!uint.TryParse(ittrationTxb.Text,out itterations)) { return; }
             if (ld.Getnum().Contains(null)) { return; } //early return
+
             itterateBtn.Enabled = true;
+            loadingLbl.Visible = false;
         }
         /// <summary>
         /// pre: true

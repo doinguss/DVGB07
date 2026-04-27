@@ -310,7 +310,6 @@
             AutoValidate = AutoValidate.EnableAllowFocusChange;
             CancelButton = clrBtn;
             ClientSize = new Size(166, 241);
-            ControlBox = false;
             Controls.Add(factBtn);
             Controls.Add(expBtn);
             Controls.Add(endpBtn);

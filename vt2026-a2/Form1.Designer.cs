@@ -42,7 +42,7 @@
             lottoBtn.FlatStyle = FlatStyle.Popup;
             lottoBtn.Location = new Point(0, 0);
             lottoBtn.Name = "lottoBtn";
-            lottoBtn.Size = new Size(782, 30);
+            lottoBtn.Size = new Size(282, 30);
             lottoBtn.TabIndex = 0;
             lottoBtn.Text = "new lotto window";
             lottoBtn.UseVisualStyleBackColor = true;
@@ -54,12 +54,12 @@
             calcBtn.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             calcBtn.BackgroundImage = (Image)resources.GetObject("calcBtn.BackgroundImage");
             calcBtn.BackgroundImageLayout = ImageLayout.Stretch;
-            calcBtn.Dock = DockStyle.Top;
+            calcBtn.Dock = DockStyle.Bottom;
             calcBtn.FlatAppearance.BorderColor = Color.DarkBlue;
             calcBtn.FlatStyle = FlatStyle.Popup;
-            calcBtn.Location = new Point(0, 30);
+            calcBtn.Location = new Point(0, 43);
             calcBtn.Name = "calcBtn";
-            calcBtn.Size = new Size(782, 30);
+            calcBtn.Size = new Size(282, 30);
             calcBtn.TabIndex = 1;
             calcBtn.Text = "new calc window";
             calcBtn.UseVisualStyleBackColor = true;
@@ -69,13 +69,13 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(782, 60);
+            ClientSize = new Size(282, 73);
             Controls.Add(calcBtn);
             Controls.Add(lottoBtn);
-            MaximumSize = new Size(800, 107);
-            MinimumSize = new Size(166, 107);
+            MaximumSize = new Size(300, 120);
+            MinimumSize = new Size(166, 120);
             Name = "Form1";
-            Text = "Form1";
+            Text = "start panel";
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();

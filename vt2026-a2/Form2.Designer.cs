@@ -80,6 +80,7 @@
             ShowInTaskbar = false;
             Text = "[EXTREMLY LOUD INCORRECT BUZZER]";
             TransparencyKey = Color.White;
+            FormClosing += warningFrm_FormClosing;
             Load += warningFrm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

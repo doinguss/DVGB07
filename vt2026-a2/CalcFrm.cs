@@ -29,14 +29,14 @@ namespace vt2026_a2
         private void eqlBtn_Click(object sender, EventArgs e)
         {
             cd.Entries.Insert(0, inputTxb.Text);
-            inputTxb.Text += '?'; //end of expression added to force tokenize last number and useful for the correctsyntax method
+            inputTxb.Text += '?'; //end of expression added to force tokenize last number and useful for the correctsyntax method 
             string output = cd.CalcExpression(inputTxb.Text);
 
             warningFrm frm;
             switch (output)
             {
                 case "err": frm = new("DONT DIVIDE BY 0!!"); showErrFrm(frm); return;
-                case "err2": frm = new("hey thats some pretty\n uncool-like input buckaroo");showErrFrm(frm); return;
+                case "err2": frm = new("hey thats some pretty\n uncool input buckaroo");showErrFrm(frm); return;
             }
             inputTxb.Text = output; // can change to "...= cd.entries[0]" (or '...=""' to clear it) here for the same equation to remain but wanted to make result extra clear
             cd.Entries[0] += "  =  " + output;
