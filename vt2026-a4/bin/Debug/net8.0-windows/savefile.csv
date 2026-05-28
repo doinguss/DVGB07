@@ -1,0 +1,17 @@
+(id , category , name , price , amount , tags)
+0,BOOK,Bello Gallico et Civili,499,2,Julius Caesar,Historia,Inbunden,Latin
+1,BOOK,How to Read a Book,149,2,Mortimer J. Adler,Kursliteratur,Pocket,
+2,BOOK,Moby Dick,49,1,Herman Melville,Äventyr,Äventyr,
+3,BOOK,Great Gatsby,79,2,F. Scott Fitzgerald,Noir,E-Bok,
+4,BOOK,House of Leaves,49,2,Mark Z. Danielewski,Skräck,,
+5,GAME,Elden Ring,599,5,Playstation 5,
+6,GAME,Demon's Souls,499,4,Playstation 5,
+7,GAME,Microsoft Flight Simulator,499,2,PC,
+8,GAME,Planescape Torment,99,2,PC,
+9,GAME,Disco Elysium,399,2,PC,
+10,MOVIE,Nyckeln till frihet,99,2,DVD,1/1/2000 2:22:00 AM,
+11,MOVIE,Gudfadern,99,2,DVD,1/1/2000 2:32:00 AM,
+12,MOVIE,Konungens återkomst,199,2,Blu-Ray,1/1/2000 2:34:00 AM,
+13,MOVIE,Pulp fiction,199,3,Blu-Ray,1/1/2000 12:00:00 AM,
+14,MOVIE,Schindlers list,99,1,DVD,1/1/2000 12:00:00 AM,
+16, MISC, object, 500000, 464,  asda,   asdsff ,     eedfwef ,   esfewswwad ,  eafwe ,  wades
