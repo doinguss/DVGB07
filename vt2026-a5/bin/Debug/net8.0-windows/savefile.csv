@@ -1,0 +1,16 @@
+(id , category , name , price , amount , tags)
+1,BOOK,Bello Gallico et Civili,299,24,,History,Bound,Latin
+2,BOOK,How to Read a Book,49,43,,Study materials,Pocket
+3,BOOK,Moby Dick,39,0,,Adventure,Pocket
+4,BOOK,Great Gatspy,19,22,,Noir,E-Book
+5,BOOK,House of Leaves,99,29,,Horror,
+6,GAME,Elden Ring,499,39,,Playstation 5
+7,GAME,Demon's Souls,399,21,,Playstation 5
+8,GAME,Microsoft Flight Simulator,499,7,,PC
+9,GAME,Planescape Torment,299,30,,PC
+10,GAME,Disco Elysium,299,5,,PC
+11,MOVIE,Shawshank Redemption,199,25,DVD,1/1/2000 2:22:00 AM,DVD,min: 142
+12,MOVIE,The Godfather,199,10,DVD,1/1/2000 2:22:00 AM,DVD,min: 142
+13,MOVIE,Return of the King,199,49,Blu-Ray,1/1/2000 2:22:00 AM,Blu-Ray,min: 142
+14,MOVIE,Pulp Fiction,299,47,Blu-Ray,1/1/2000 12:00:00 AM,Blu-Ray,min: 
+15,MOVIE,Schindlers List,199,32,DVD,1/1/2000 12:00:00 AM,DVD,min: 
